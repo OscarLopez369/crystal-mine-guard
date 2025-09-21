@@ -27,6 +27,68 @@ export const crystalMineGuardABI = [
     "type": "constructor"
   },
   {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "revenueId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes",
+        "name": "amount",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "inputProof",
+        "type": "bytes"
+      }
+    ],
+    "name": "claimRevenue",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes",
+        "name": "hashRate",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "powerConsumption",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "temperature",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "efficiency",
+        "type": "bytes"
+      },
+      {
+        "internalType": "bytes",
+        "name": "inputProof",
+        "type": "bytes"
+      }
+    ],
+    "name": "createMiningOperation",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {

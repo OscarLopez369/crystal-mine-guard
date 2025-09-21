@@ -122,6 +122,61 @@ export function validateFHEProof(proof: string, data: any): boolean {
   return proof.startsWith('proof-');
 }
 
+// Contract interaction functions (no direct transfers)
+export async function createMiningOperationContract(
+  hashRate: number,
+  powerConsumption: number,
+  temperature: number,
+  efficiency: number
+): Promise<string> {
+  // This function would interact with the smart contract
+  // No direct ETH transfers - only contract state changes
+  const operationData = {
+    hashRate,
+    powerConsumption,
+    temperature,
+    efficiency,
+    timestamp: Date.now()
+  };
+  
+  // Mock contract interaction
+  return `operation-${Date.now()}`;
+}
+
+export async function claimRevenueContract(
+  revenueId: number,
+  amount: number
+): Promise<boolean> {
+  // This function would interact with the smart contract
+  // No direct ETH transfers - only contract state changes
+  const claimData = {
+    revenueId,
+    amount,
+    timestamp: Date.now()
+  };
+  
+  // Mock contract interaction
+  return true;
+}
+
+export async function submitSecurityAlertContract(
+  severity: number,
+  threatLevel: number,
+  alertType: string
+): Promise<string> {
+  // This function would interact with the smart contract
+  // No direct ETH transfers - only contract state changes
+  const alertData = {
+    severity,
+    threatLevel,
+    alertType,
+    timestamp: Date.now()
+  };
+  
+  // Mock contract interaction
+  return `alert-${Date.now()}`;
+}
+
 // FHE configuration
 export const FHE_CONFIG = {
   keySize: 2048,

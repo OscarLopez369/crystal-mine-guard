@@ -154,6 +154,25 @@ contract CrystalMineGuard is SepoliaConfig {
         return revenueId;
     }
     
+    function claimRevenue(
+        uint256 revenueId,
+        externalEuint32 amount,
+        bytes calldata inputProof
+    ) public {
+        require(miningRevenues[revenueId].beneficiary == msg.sender, "Not authorized to claim this revenue");
+        require(miningRevenues[revenueId].beneficiary != address(0), "Revenue does not exist");
+        
+        euint32 internalAmount = FHE.fromExternal(amount, inputProof);
+        
+        // Update revenue status to distributed
+        miningRevenues[revenueId].isDistributed = FHE.asEbool(true);
+        
+        // Update operator reputation based on successful claim
+        operatorReputation[msg.sender] = FHE.add(operatorReputation[msg.sender], FHE.asEuint32(10));
+        
+        emit RevenueGenerated(revenueId, msg.sender, 0); // Amount will be decrypted off-chain
+    }
+    
     function submitAuditReport(
         externalEuint32 securityScore,
         externalEuint32 complianceScore,
