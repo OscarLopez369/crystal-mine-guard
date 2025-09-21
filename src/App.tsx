@@ -1,11 +1,12 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { WagmiProvider } from 'wagmi';
 import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { config } from './config/wallet';
+import { queryClient } from './lib/query-client';
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import Royalties from "./pages/Royalties";
@@ -13,16 +14,6 @@ import MiningData from "./pages/MiningData";
 import AuditStatus from "./pages/AuditStatus";
 import NotFound from "./pages/NotFound";
 import '@rainbow-me/rainbowkit/styles.css';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      retry: false,
-      refetchOnWindowFocus: false,
-      staleTime: 1000 * 60 * 5, // 5 minutes
-    },
-  },
-});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
