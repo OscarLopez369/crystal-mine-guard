@@ -14,12 +14,20 @@ import AuditStatus from "./pages/AuditStatus";
 import NotFound from "./pages/NotFound";
 import '@rainbow-me/rainbowkit/styles.css';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+      staleTime: 1000 * 60 * 5, // 5 minutes
+    },
+  },
+});
 
 const App = () => (
-  <WagmiProvider config={config}>
-    <RainbowKitProvider>
-      <QueryClientProvider client={queryClient}>
+  <QueryClientProvider client={queryClient}>
+    <WagmiProvider config={config}>
+      <RainbowKitProvider>
         <TooltipProvider>
           <Toaster />
           <Sonner />
@@ -35,9 +43,9 @@ const App = () => (
             </Routes>
           </BrowserRouter>
         </TooltipProvider>
-      </QueryClientProvider>
-    </RainbowKitProvider>
-  </WagmiProvider>
+      </RainbowKitProvider>
+    </WagmiProvider>
+  </QueryClientProvider>
 );
 
 export default App;
